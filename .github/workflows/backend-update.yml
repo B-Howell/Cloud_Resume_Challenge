@@ -1,0 +1,30 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'backend/**'
+
+jobs:
+  terraform-apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS SSO
+        uses: aws-actions/configure-aws-sso@v1
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          start-url: ${{ secrets.AWS_SSO_START_URL }}
+          sso-region: ${{ secrets.AWS_REGION }}
+          role-name: ${{ secrets.AWS_ROLE_NAME }}
+          account-id: ${{ secrets.AWS_ACCOUNT_ID }}
+
+      - name: Terraform Apply
+        run: |
+          cd backend
+          terraform init
+          terraform apply -auto-approve
