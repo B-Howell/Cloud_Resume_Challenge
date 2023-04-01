@@ -17,11 +17,11 @@ jobs:
       - name: Configure AWS SSO
         uses: aws-actions/configure-aws-sso@v1
         with:
-          aws-region: ${{ secrets.AWS_REGION }}
-          start-url: ${{ secrets.AWS_SSO_START_URL }}
-          sso-region: ${{ secrets.AWS_REGION }}
-          role-name: ${{ secrets.AWS_ROLE_NAME }}
-          account-id: ${{ secrets.AWS_ACCOUNT_ID }}
+          sso_start_url: ${{ secrets.AWS_SSO_START_URL }}
+          sso_region: ${{ secrets.AWS_SSO_REGION }}
+          sso_account_id: ${{ secrets.AWS_SSO_ACCOUNT_ID }}
+          sso_role_name: ${{ secrets.AWS_SSO_ROLE_NAME }}
+          aws_region: ${{ secrets.AWS_REGION }}
 
       - name: Terraform Apply
         run: |
