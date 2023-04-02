@@ -15,13 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.5.2
+        with:
+          submodules: 'recursive'
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: ${{ secrets.AWS_REGION }}
-          role_to_assume: ${{ secrets.ROLE_TO_ASSUME }}
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
