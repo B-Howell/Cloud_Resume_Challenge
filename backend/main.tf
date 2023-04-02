@@ -24,6 +24,12 @@ provider "aws" {
   profile = "terraform"
 }
 
+resource "aws_ssm_parameter" "foo" {
+  name  = "foo"
+  type  = "String"
+  value = "bar"
+}
+
 #-------------------------DynamoDB-Table--------------------------------------------------#
 
 resource "aws_dynamodb_table" "visitor_count" {

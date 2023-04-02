@@ -6,25 +6,86 @@ on:
       - master
     paths:
       - 'backend/**'
+  pull_request:
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
 
 jobs:
   terraform-apply:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Configure AWS SSO
-        uses: aws-actions/configure-aws-sso@v1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          sso_start_url: ${{ secrets.AWS_SSO_START_URL }}
-          sso_region: ${{ secrets.AWS_SSO_REGION }}
-          sso_account_id: ${{ secrets.AWS_SSO_ACCOUNT_ID }}
-          sso_role_name: ${{ secrets.AWS_SSO_ROLE_NAME }}
-          aws_region: ${{ secrets.AWS_REGION }}
+          role_to_assume: ${{ secrets.ROLE_TO_ASSUME }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-session-name: GitHub-OIDC-TERRAFORM
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with: 
+          terraform_version: 1.4.0
+        
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+      
+      - name: Terraform Init
+        id: init
+        #env:
+          #AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+          #AWS_BUCKET_KEY_NAME: ${{ secrets.AWS_BUCKET_BACKEND_KEY_NAME }}
+        run: terraform init # -backend-configs="bucket=${AWS_BUCKET_NAME}" -backend-configs="key=${AWS_BUCKET_KEY_NAME}"
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terrraform Plan
+        id: plan
+        run: terraform plan -no-color
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+
+      - uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            <details><summary>Validation Output</summary>
+            \`\`\`\n
+            ${{ steps.validate.outputs.stdout }}
+            \`\`\`
+            </details>
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            <details><summary>Show Plan</summary>
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+            </details>
+            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
 
       - name: Terraform Apply
-        run: |
-          cd backend
-          terraform init
-          terraform apply -auto-approve
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve -input=false
+

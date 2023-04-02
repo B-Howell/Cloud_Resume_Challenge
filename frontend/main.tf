@@ -24,6 +24,11 @@ provider "aws" {
   profile = "terraform"
 }
 
+resource "aws_ssm_parameter" "foo" {
+  name  = "foo"
+  type  = "String"
+  value = "bar"
+}
 
 # Required to use this module:
 # Route 53 Zone
@@ -89,6 +94,7 @@ resource "aws_s3_object" "my_objects" {
   bucket       = aws_s3_bucket.s3_bucket.id
   key          = each.key
   source       = "${path.module}/${each.value.path}"
+  etag         = filemd5("${path.module}/resume_s3_bucket/index.html")
   content_type = each.value.content_type
 }
 
