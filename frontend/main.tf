@@ -24,12 +24,6 @@ provider "aws" {
   profile = "terraform"
 }
 
-resource "aws_ssm_parameter" "foo" {
-  name  = "foo"
-  type  = "String"
-  value = "bar"
-}
-
 # Required to use this module:
 # Route 53 Zone
 # ACM Certificate
