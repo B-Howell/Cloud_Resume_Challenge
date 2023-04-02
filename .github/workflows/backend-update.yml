@@ -17,8 +17,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          path: 'backend'
           submodules: 'recursive'
+        path: 'backend'
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
