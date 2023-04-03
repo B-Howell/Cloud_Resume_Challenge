@@ -44,6 +44,7 @@ jobs:
       - name: Test Lambda with pytest
         shell: pwsh
         run: |
+          cd backend
           pytest 'count_test.py'
         working-directory: ./backend
 
