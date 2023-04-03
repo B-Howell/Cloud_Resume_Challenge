@@ -22,7 +22,7 @@ def lambda_handler(event, context):
                 "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token"
             },
             "body": json.dumps({
-                "message": f"New view count is {count}"
+                "message": f"New view count: {count}"
             })
         }
     elif http_method == 'GET':
