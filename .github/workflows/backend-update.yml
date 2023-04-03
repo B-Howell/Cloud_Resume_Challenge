@@ -56,7 +56,7 @@ jobs:
 
 
   terraform-apply:
-    needs: package-lambda
+    needs: test-lambda
     permissions:
       id-token: write
       contents: read
