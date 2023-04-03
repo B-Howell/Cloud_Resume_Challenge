@@ -37,7 +37,7 @@ def lambda_handler(event, context):
                 "Access-Control-Allow-Methods": "OPTIONS,GET",
                 "Content-Type": "application/json"
             },
-            "body": json.dumps({"count": str(count)})
+            "body": json.dumps({"count is": str(count)})
         }
     else:
         return {
