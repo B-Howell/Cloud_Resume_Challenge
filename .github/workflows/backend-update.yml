@@ -33,12 +33,35 @@ jobs:
           pip install -r requirements.txt
         working-directory: ./backend
 
-      - name: Test Lambda function
+      - name: Test Lambda function (GET)
         run: |
           cd backend
           source env/bin/activate
-          aws lambda invoke --function-name count --payload file://test-event.json output.json
+          aws lambda invoke --function-name count --cli-binary-format raw-in-base64-out --payload '{"httpMethod": "GET", "queryStringParameters": {"key1": "value1"}}' output-get.json
         working-directory: ./backend
+        with:
+          payload: |
+            {
+              "httpMethod": "GET",
+              "queryStringParameters": {
+                "key1": "value1"
+              }
+            }
+      
+      - name: Test Lambda function (POST)
+        run: |
+          cd backend
+          source env/bin/activate
+          aws lambda invoke --function-name count --cli-binary-format raw-in-base64-out --payload '{"httpMethod": "POST", "body": {"key1": "value1"}}' output-post.json
+        working-directory: ./backend
+        with:
+          payload: |
+            {
+              "httpMethod": "POST",
+              "body": {
+              "key1": "value1"
+              }
+            }
 
   package-lambda:
     needs: test-lambda
