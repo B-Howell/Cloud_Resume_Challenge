@@ -22,6 +22,11 @@ jobs:
         with:
           python-version: '3.9'
 
+      - name: Check current directory
+        run: |
+          pwd
+          ls -la
+      
       - name: Install dependencies
         run: |
           cd backend/lambda
