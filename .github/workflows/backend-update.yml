@@ -89,5 +89,25 @@ jobs:
         run: cd backend && terraform apply -auto-approve -input=false
         working-directory: ./backend
   
-  
+  update-frontend:
+    needs: terraform-apply
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - name: Install jq and sed
+        run: sudo apt-get update && sudo apt-get install -y jq sed
+      - name: Extract API Gateway ID from terraform output
+        id: extract-id
+        run: echo "::set-output name=id::$(terraform output -json aws_api_gateway_rest_api.rest_api.id | jq -r '.[]')"
+        working-directory: backend/
+      - name: Update frontend script
+        run: |
+          API_GATEWAY_ID=$(cat frontend/resume_s3_bucket/script.js | sed -n 's/.*\/\(.*\)\/.*/\1/p')
+          if [ "$API_GATEWAY_ID" != "${{ steps.extract-id.outputs.id }}" ]; then
+            sed -i "s/$API_GATEWAY_ID/${{ steps.extract-id.outputs.id }}/g" frontend/resume_s3_bucket/script.js
+          fi
+        working-directory: ${{ github.workspace }}
 
