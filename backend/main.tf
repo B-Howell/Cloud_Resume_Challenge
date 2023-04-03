@@ -94,7 +94,7 @@ resource "aws_iam_role_policy_attachment" "dynamodb_access" {
 }
 
 resource "aws_lambda_function" "count" {
-  filename      = "lambda/count.zip"
+  filename      = "count.zip"
   function_name = "count"
   handler       = "count.lambda_handler"
   role          = aws_iam_role.lambda_role.arn
