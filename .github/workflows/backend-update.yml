@@ -54,9 +54,6 @@ jobs:
           cd backend
           zip -r9 count.zip count.py
         working-directory: ./backend
-    
-
-
 
   terraform-apply:
     needs: test-lambda
