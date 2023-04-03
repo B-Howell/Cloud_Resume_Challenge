@@ -9,12 +9,14 @@ on:
 
 jobs:
   test-lambda:
+    permissions:
+      id-token: write
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          submodules: 'recursive'
           path: 'backend'
 
       - name: Setup Python 3.9
@@ -28,76 +30,30 @@ jobs:
       - name: Install dependencies
         run: |
           cd backend
-          python -m venv env
-          source env/bin/activate
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
           pip install -r requirements.txt
         working-directory: ./backend
 
-      - name: Test Lambda function (GET)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+
+      - name: Test Lambda with pytest
+      shell: pwsh
+      run: |
+        pytest './backend/count_test.py'
+
+      - name: Package Lambda function
+        if: ${{ job.status == 'success' }}
         run: |
           cd backend
-          source env/bin/activate
-          aws lambda invoke --function-name count --cli-binary-format raw-in-base64-out --payload '{"httpMethod": "GET", "queryStringParameters": {"key1": "value1"}}' output-get.json
-        working-directory: ./backend
-        with:
-          payload: |
-            {
-              "httpMethod": "GET",
-              "queryStringParameters": {
-                "key1": "value1"
-              }
-            }
-      
-      - name: Test Lambda function (POST)
-        run: |
-          cd backend
-          source env/bin/activate
-          aws lambda invoke --function-name count --cli-binary-format raw-in-base64-out --payload '{"httpMethod": "POST", "body": {"key1": "value1"}}' output-post.json
-        working-directory: ./backend
-        with:
-          payload: |
-            {
-              "httpMethod": "POST",
-              "body": {
-              "key1": "value1"
-              }
-            }
+          zip -r9 count.zip count.py
+    
 
-  package-lambda:
-    needs: test-lambda
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-          path: 'backend'
 
-      - name: Create virtual environment
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: |
-          cd backend
-          python -m venv env
-          source env/bin/activate
-          pip install -r requirements.txt
-        working-directory: ./backend
-
-      - name: Package Lambda code
-        run: |
-          cd backend
-          source env/bin/activate
-          zip count.zip count.py
-
-          # Save a hash of the zip file
-          echo "$(shasum -a 256 count.zip | cut -d ' ' -f 1)" > count.zip.hash
-
-          # Store the hash as an environment variable
-          echo "HASH=$(cat count.zip.hash)" >> $GITHUB_ENV
-        working-directory: ./backend
 
   terraform-apply:
     needs: package-lambda
