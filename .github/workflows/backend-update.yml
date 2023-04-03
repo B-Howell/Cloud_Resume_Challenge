@@ -28,19 +28,17 @@ jobs:
       - name: Install dependencies
         run: |
           cd backend
-          pwd
-          ls backend
           python -m venv env
           source env/bin/activate
-          cd ..
-          cd backend
-          pip install -r requirements.txt
+          pip install -r backend/requirements.txt
+        working-directory: ./backend
 
       - name: Test Lambda function
         run: |
           cd backend
           source env/bin/activate
           aws lambda invoke --function-name count --payload file://test-event.json output.json
+        working-directory: ./backend
 
   package-lambda:
     needs: test-lambda
@@ -63,6 +61,7 @@ jobs:
           python -m venv env
           source env/bin/activate
           pip install -r requirements.txt
+        working-directory: ./backend
 
       - name: Package Lambda code
         run: |
@@ -75,6 +74,7 @@ jobs:
 
           # Store the hash as an environment variable
           echo "HASH=$(cat count.zip.hash)" >> $GITHUB_ENV
+        working-directory: ./backend
 
   terraform-apply:
     needs: package-lambda
