@@ -1,8 +1,8 @@
 import json
 from unittest.mock import patch
-from lambda_function import lambda_handler
+from count import lambda_handler
 
-@patch('lambda_function.table')
+@patch('count.table')
 def test_lambda_handler(mock_table):
     mock_table.return_value.get_item.return_value = {'Item': {'count': 0}}
     # Test POST method
