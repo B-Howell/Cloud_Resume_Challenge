@@ -42,9 +42,9 @@ jobs:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
       - name: Test Lambda with pytest
-      shell: pwsh
-      run: |
-        pytest './backend/count_test.py'
+        shell: pwsh
+        run: |
+          pytest './backend/count_test.py'
 
       - name: Package Lambda function
         if: ${{ job.status == 'success' }}
