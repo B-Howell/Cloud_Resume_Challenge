@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           submodules: 'recursive'
           path: 'backend'
@@ -35,8 +35,29 @@ jobs:
           source env/bin/activate
           aws lambda invoke --function-name count --payload file://test-event.json output.json
 
+  package-lambda:
+    needs: test-lambda
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+          path: 'backend'
+
+      - name: Create virtual environment
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          cd backend/lambda
+          python -m venv env
+          source env/bin/activate
+          pip install -r requirements.txt
+
       - name: Package Lambda code
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && needs.test-lambda.result == 'success'
         run: |
           cd backend/lambda
           source env/bin/activate
@@ -49,7 +70,7 @@ jobs:
           echo "HASH=$(cat count.zip.hash)" >> $GITHUB_ENV
 
   terraform-apply:
-    needs: test-lambda
+    needs: package-lambda
     permissions:
       id-token: write
       contents: read
