@@ -29,9 +29,11 @@ jobs:
         run: |
           cd backend
           pwd
-          ls
+          ls backend
           python -m venv env
           source env/bin/activate
+          cd ..
+          cd backend
           pip install -r requirements.txt
 
       - name: Test Lambda function
