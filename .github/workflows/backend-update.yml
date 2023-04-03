@@ -44,7 +44,8 @@ jobs:
       - name: Test Lambda with pytest
         shell: pwsh
         run: |
-          pytest './backend/count_test.py'
+          pytest 'count_test.py'
+        working-directory: ./backend
 
       - name: Package Lambda function
         if: ${{ job.status == 'success' }}
