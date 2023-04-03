@@ -33,10 +33,10 @@ jobs:
       
       - name: Terraform Init
         id: init
-        run: cd backend && terraform init
+        run: cd frontend && terraform init
         working-directory: ./frontend
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-        run: cd backend && terraform apply -auto-approve -input=false
+        run: cd frontend && terraform apply -auto-approve -input=false
         working-directory: ./frontend
