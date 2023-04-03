@@ -90,7 +90,7 @@ jobs:
         working-directory: ./backend
   
   update-frontend:
-    needs: apply-terraform
+    needs: terraform-apply
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
