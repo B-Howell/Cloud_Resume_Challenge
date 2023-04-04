@@ -1,0 +1,93 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'backend/**'
+
+jobs:
+  test-lambda:
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          path: 'backend'
+
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+      
+      - name: Install dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          pip install -r requirements.txt
+        working-directory: ./backend
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+
+      - name: Test Lambda with pytest
+        shell: pwsh
+        run: |
+          cd backend
+          pytest 'count_test.py'
+        working-directory: ./backend
+
+      - name: Package Lambda function
+        if: ${{ job.status == 'success' }}
+        run: |
+          cd backend
+          zip -r9 count.zip count.py
+        working-directory: ./backend
+
+  terraform-apply:
+    needs: test-lambda
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+          path: 'backend'
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with: 
+          terraform_version: 1.4.0
+      
+      - name: Terraform Init
+        id: init
+        run: cd backend && terraform init
+        working-directory: ./backend
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        run: cd backend && terraform apply -auto-approve -input=false
+        working-directory: ./backend
+  
+  
+

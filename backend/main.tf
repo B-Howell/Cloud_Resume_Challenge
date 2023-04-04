@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket  = "bhcrc-tfstate"
-    key     = "terraform.tfstate"
+    key     = "backend.tfstate"
     region  = "us-east-1"
     profile = "terraform"
 
@@ -21,7 +21,6 @@ terraform {
 
 provider "aws" {
   region  = "us-east-1"
-  profile = "terraform"
 }
 
 #-------------------------DynamoDB-Table--------------------------------------------------#
@@ -44,7 +43,7 @@ resource "aws_dynamodb_table_item" "count" {
   item = <<ITEM
 {
   "id"   : {"S": "0"},
-  "count": {"N": "1"}
+  "count": {"N": "10"}
 }
 ITEM
 
@@ -95,7 +94,7 @@ resource "aws_iam_role_policy_attachment" "dynamodb_access" {
 }
 
 resource "aws_lambda_function" "count" {
-  filename      = "modules/backend/lambda/count.zip"
+  filename      = "count.zip"
   function_name = "count"
   handler       = "count.lambda_handler"
   role          = aws_iam_role.lambda_role.arn

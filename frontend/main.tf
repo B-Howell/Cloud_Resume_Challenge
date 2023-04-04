@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket  = "bhcrc-tfstate"
-    key     = "terraform.tfstate"
+    key     = "frontend.tfstate"
     region  = "us-east-1"
     profile = "terraform"
 
@@ -21,10 +21,9 @@ terraform {
 
 provider "aws" {
   region  = "us-east-1"
-  profile = "terraform"
 }
 
-# Required to use this module is:
+# Required to use this module:
 # Route 53 Zone
 # ACM Certificate
 
