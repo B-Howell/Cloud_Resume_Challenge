@@ -13,3 +13,8 @@ The Cloud Resume Challenge is designed as way for newcomers to cloud to get hand
 
 <br> Please feel free to view to diagram of the architecture below
 <img src="crc-diagram.drawio.svg" alt="Website Architecture Diagram" width ="100%" height="60%"
+
+Challenge Steps
+
+1. Certification
+- I earned my AWS certification before I came across this challenge using Adrian Cantril's course. [Credly](https://www.credly.com/badges/e31ed85f-3621-4277-bcb0-283092783d11/public_url)
