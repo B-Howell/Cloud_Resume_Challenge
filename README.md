@@ -30,19 +30,19 @@ Challenge Steps
 - Stored my web files in an S3 Bucket and launched it as a static website
 
 5. HTTPS
--Used CloudFront to enable HTTPS and caching at edge locations
+- Used CloudFront to enable HTTPS and caching at edge locations
 
 6. DNS
--Route 53 was utilized to create my domain name (brettmhowell.com)
--Attached an SSL Certificate to CloudFront for alternate names
+- Route 53 was utilized to create my domain name (brettmhowell.com)
+- Attached an SSL Certificate to CloudFront for alternate names
 
 7.  Javascript
--Created a  simple script.js for my website to use the API Gateway that is created in later steps
+- Created a  simple script.js for my website to use the API Gateway that is created in later steps
 
 8. Database
--Utilized DynamoDB to store my website view count
--On-Demand pricing was necessary to make usage of the database essentially free
--Holds a single attribute which will be updated by the Lambda function
+- Utilized DynamoDB to store my website view count
+- On-Demand pricing was necessary to make usage of the database essentially free
+- Holds a single attribute which will be updated by the Lambda function
 
 9. API
 - Rest API allows access to URL endpoint to accept GET and POST methods
