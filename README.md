@@ -12,7 +12,7 @@ The Cloud Resume Challenge is designed as way for newcomers to cloud to get hand
 </br>To deploy the architecture I used Terraform as my Infrastructure as Code method and GitHub Actions as my CI/CD method. 
 
 <br> Please feel free to view to diagram of the architecture below
-<img src="crc-diagram.drawio.svg" alt="Website Architecture Diagram" width ="100%" height="60%"
+<img src="./crc-diagram.svg" alt="Website Architecture Diagram" width ="100%" height="60%"
 
 Challenge Steps
 
