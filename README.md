@@ -13,7 +13,7 @@ The Cloud Resume Challenge is designed as way for newcomers to cloud to get hand
 
 <br> Please feel free to view to diagram of the architecture below:
 
-<br><img src="./crc-diagram.svg" alt="Website Architecture Diagram" width="100%" height="56.25%">
+<br><img src="./crc-diagram.jpg" alt="Website Architecture Diagram" width="100%" height="56.25%">
 
 Challenge Steps
 
