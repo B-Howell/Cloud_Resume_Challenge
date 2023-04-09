@@ -17,7 +17,7 @@ The Cloud Resume Challenge is designed as way for newcomers to cloud to get hand
 
 Challenge Steps
 
-**1. Certification
+**1. Certification**
 - I earned my AWS Solutions Architect Associate certification before I came across this challenge using Adrian Cantril's course. [Credly](https://www.credly.com/badges/e31ed85f-3621-4277-bcb0-283092783d11/public_url)
 
 2. HTML
