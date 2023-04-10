@@ -82,6 +82,7 @@ p {
 #contactDetails ul li {
 	margin-bottom: 3px;
 	color: #444;
+	line-height: 2;
 }
 
 #contactDetails ul li a, a[href^=tel] {
@@ -117,9 +118,22 @@ section:last-child {
 	width: 25%;
 }
 
+.sectionTitle.full-width {
+	float: left;
+	width: 25%;
+	margin-bottom: 10px;
+}
+
 .sectionContent {
 	float: right;
 	width: 72.5%;
+}
+
+.sectionContent.full-width {
+	width: 100%;
+	float: left;
+	margin: 0;
+	padding: 0;
 }
 
 .sectionTitle h1 {
