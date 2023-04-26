@@ -22,6 +22,10 @@ p {
 	color: #444;
 }
 
+.project-font {
+	font-size: .9em;
+}
+
 #cv {
 	width: 90%;
 	max-width: 800px;
