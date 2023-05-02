@@ -69,7 +69,7 @@ variable "objects" {
     }
     "favicon.ico" = {
       path         = "resume_s3_bucket/favicon.ico"
-      content_type = "image/ico"
+      content_type = "image/x-icon"
     }
   }
 }
