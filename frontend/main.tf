@@ -68,6 +68,17 @@ resource "aws_s3_bucket_website_configuration" "s3_bucket" {
   error_document {
     key = "error.html"
   }
+
+  routing_rules = jsonencode([
+    {
+      "Condition": {
+        "KeySuffixEquals": ".html"
+      },
+      "Redirect": {
+        "ReplaceKeyWith": "/"
+      }
+    }
+  ])
 }
 
 resource "aws_s3_bucket_acl" "s3_bucket" {
