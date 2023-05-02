@@ -67,5 +67,9 @@ variable "objects" {
       path         = "resume_s3_bucket/hangman.css"
       content_type = "text/css"
     }
+    "favicon.ico" = {
+      path         = "resume_s3_bucket/favicon.ico"
+      content_type = "image/ico"
+    }
   }
 }
