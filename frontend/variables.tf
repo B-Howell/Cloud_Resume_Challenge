@@ -59,5 +59,13 @@ variable "objects" {
       path         = "resume_s3_bucket/style.css"
       content_type = "text/css"
     }
+    "hangman.html" = {
+      path         = "resume_s3_bucket/hangman.html"
+      content_type = "text/html"
+    }
+    "hangman.css" = {
+      path         = "resume_s3_bucket/hangman.css"
+      content_type = "text/css"
+    }
   }
 }
