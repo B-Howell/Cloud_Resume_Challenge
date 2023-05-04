@@ -33,7 +33,7 @@ p {
 
 .project-li {
 	display: inline-block;
-	padding-bottom: 1em;
+	padding-bottom: 10px;
 }
 
 .project-button {
