@@ -27,13 +27,19 @@ p {
 	font-size: .9em;
 }
 
+.project-ul {
+	list-style-type: disc;
+}
+
 .project-li {
 	display: inline-block;
+	padding-bottom: 1em;
 }
+
 .project-button {
 	display: inline-block;
 	margin-left: auto;
-  	font-size: .75em;
+  	font-size: .8em;
 	border: 1px solid #cf8a05;
 	border-radius: 2px;
 	padding: 3px 6px;
