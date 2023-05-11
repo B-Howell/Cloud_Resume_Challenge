@@ -44,6 +44,14 @@ p {
 	border-radius: 2px;
 	padding: 3px 6px;
 	background-color: rgb(249, 219, 164);
+	text-decoration: none;
+	transition: 0.6s ease;
+	color: #181818;
+}
+
+.project-button:hover {
+    background-color: #ffc44e;
+    transform: scale(1.1);
 }
 
 .project-font {
