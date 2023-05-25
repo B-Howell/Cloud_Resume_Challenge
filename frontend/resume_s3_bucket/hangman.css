@@ -52,6 +52,7 @@ body {
   padding: 6px 12px;
   background-color: rgb(255, 212, 133);
   font-family: 'Lato', helvetica, arial, sans-serif;
+  cursor: pointer;
 }
 
 .bold {

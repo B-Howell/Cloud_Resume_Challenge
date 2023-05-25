@@ -44,6 +44,7 @@ p {
 	border-radius: 2px;
 	padding: 3px 6px;
 	background-color: rgb(249, 219, 164);
+	cursor: pointer;
 }
 
 .project-font {
