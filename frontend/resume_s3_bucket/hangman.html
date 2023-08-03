@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>Hangman | Brett Howell</title>
+
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="description" content="Hangman"/>
+    <meta charset="UTF-8"> 
     
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link type="text/css" rel="stylesheet" href="hangman.css">
+    <link href='https://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
 
-  </head>
+</head>
   <body id="cv">
     
     <div class="header-container">
@@ -29,12 +34,16 @@
         <p class="quickFade delayTwo">To make a guess, simply click or tap on a letter from the alphabet provided. If the letter appears in the word, it will be revealed in the appropriate position(s). If the letter does not appear in the word, a portion of the hangman figure will be drawn.</p>
         <p class="quickFade delayTwo">You have 6 guesses before the hangman is fully drawn, so choose your letters carefully! Good luck, and have fun playing Hangman.</p>
 
+        
         <h2 class="quickFade">Links</h2>
-        <p class="quickFade delayTwo"><a href="https://github.com/B-Howell/Hangman.git" target="_blank">GitHub Repository</a></p>
-        <p class="quickFade delayTwo"><a href="https://www.linkedin.com/pulse/hangman-part-i-crafting-application-python-flask-mysql-brett-howell" target="_blank">Blog Part I: Crafting the Application</a></p>
-        <p class="quickFade delayTwo"><a href="https://www.linkedin.com/pulse/hangman-part-ii-deploying-aws-ecr-vpc-rds-ecs-alb-brett-howell" target="_blank">Blog Part II: Deploying to AWS</a></p>
-        <p class="quickFade delayTwo"><a href="https://www.linkedin.com/pulse/hangman-part-iii-automation-terraform-github-actions-brett-howell" target="_blank">Blog Part III: Automation</a></p>
-
+        <div id="HangmanLinks" class="quickFade delayFour">
+          <ul>
+            <li><a href="https://github.com/B-Howell/Hangman.git" target="_blank">GitHub Repository</a></li>
+            <li><a href="https://www.linkedin.com/pulse/hangman-part-i-crafting-application-python-flask-mysql-brett-howell" target="_blank">Blog Part I: Crafting the Application</a></li>
+            <li><a href="https://www.linkedin.com/pulse/hangman-part-ii-deploying-aws-ecr-vpc-rds-ecs-alb-brett-howell" target="_blank">Blog Part II: Deploying to AWS</a></li>
+            <li><a href="https://www.linkedin.com/pulse/hangman-part-iii-automation-terraform-github-actions-brett-howell" target="_blank">Blog Part III: Automation</a></li>
+          </ul>
+        </div>
     </div>
   </body>
 </html>

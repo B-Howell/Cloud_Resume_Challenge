@@ -78,6 +78,31 @@ iframe {
   margin-bottom: 1em; /* add a bottom margin to each paragraph */
 }
 
+#HangmanLinks ul {
+	list-style-type: square;
+	font-size: 0.9em;
+	margin-top: 2px;
+}
+
+#HangmanLinks ul li {
+	margin-bottom: 3px;
+	color: #444;
+	line-height: 2;
+}
+
+#HangmanLinks ul li a, a[href^=tel] {
+	color: #444; 
+	text-decoration: none;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	transition: all .3s ease-in;
+}
+
+#HangmanLinks ul li a:hover { 
+	color: #cf8a05;
+}
 
 @media print {
   #cv {
