@@ -45,7 +45,14 @@ p {
 	padding: 3px 6px;
 	background-color: rgb(249, 219, 164);
 	cursor: pointer;
+	box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3);
+  	transition: box-shadow 0.3s ease-in-out;
 }
+
+.project-button:hover {
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
 
 .project-font {
 	font-size: .9em;
@@ -63,6 +70,11 @@ p {
 	padding: 25px 35px;
 	border-bottom: 2px solid #cf8a05;
 	background: #ededed;
+}
+
+.mainDetails h1, h2, h4 {
+	text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  	transition: text-shadow 0.3s ease-in-out;
 }
 
 #name h1 {
