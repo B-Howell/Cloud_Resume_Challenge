@@ -186,7 +186,7 @@ section:last-child {
 
 .sectionContent h2 {
 	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	margin-bottom: -2px;
 }
 
@@ -208,6 +208,21 @@ section:last-child {
 
 .keySkills ul li {
 	margin-bottom: 3px;
+}
+
+.job-article ul,
+.job-article li {
+    margin: 0;
+    padding: 0;
+}
+
+.job-article summary h2 {
+    display: inline-block;
+    margin: 0; /* To remove any default margin */
+}
+
+.job-article {
+    margin-bottom: 20px; /* or whatever value you find suitable */
 }
 
 @media all and (min-width: 602px) and (max-width: 800px) {
