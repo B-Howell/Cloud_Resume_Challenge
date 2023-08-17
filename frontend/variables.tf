@@ -64,8 +64,28 @@ variable "objects" {
       content_type = "text/html"
     }
     "hangman.css" = {
-      path         = "resume_s3_bucket/hangman.css"
+      path         = "resume_s3_bucket/games.css"
       content_type = "text/css"
+    }
+    "web-dev.html" = {
+      path         = "resume_s3_bucket/web-dev.html"
+      content_type = "text/html"
+    }
+    "movie-rankings.html" = {
+      path         = "resume_s3_bucket/web-dev-portfolio/movie-rankings.html"
+      content_type = "text/html"
+    }
+    "movie-rankings.PNG" = {
+      path         = "resume_s3_bucket/web-dev-portfolio/images/movie-rankings.PNG"
+      content_type = "image/png"
+    }
+    "birthday-invite.html" = {
+      path         = "resume_s3_bucket/web-dev-portfolio/movie-rankings.html"
+      content_type = "text/html"
+    }
+    "birthday-invite.PNG" = {
+      path         = "resume_s3_bucket/web-dev-portfolio/images/birthday-invite.PNG"
+      content_type = "image/png"
     }
     "favicon.ico" = {
       path         = "resume_s3_bucket/favicon.ico"
