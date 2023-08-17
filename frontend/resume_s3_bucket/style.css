@@ -141,6 +141,23 @@ p {
 	color: #cf8a05;
 }
 
+#contactDetails button {
+	margin-left: auto;
+	font-size: 1em;
+	border: 1px solid #cf8a05;
+	border-radius: 4px;
+	padding: 6px 12px;
+	background-color: rgb(255, 212, 133);
+	font-family: 'Lato', helvetica, arial, sans-serif;
+	cursor: pointer;
+	box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.3);
+	transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  #contactDetails button:hover {
+	box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.5);
+  }
+
 section {
 	border-top: 1px solid #dedede;
 	padding: 20px 0 0;
@@ -210,6 +227,10 @@ section:last-child {
 	margin-bottom: 3px;
 }
 
+.education-list li {
+    margin-bottom: 1em; /* adjust as necessary */
+}
+
 .job-article ul,
 .job-article li {
     margin: 0;
@@ -223,6 +244,36 @@ section:last-child {
 
 .job-article {
     margin-bottom: 20px; /* or whatever value you find suitable */
+}
+
+.web-dev-projects {
+	display: flex;
+}
+
+#web-dev-portfolio container {
+    box-sizing: border-box;
+    padding: 0.5rem;
+}
+
+#web-dev-portfolio container img {
+    width: 80%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+#web-dev-portfolio container h1{
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+	font-style: italic;
+	font-size: 1.5em;
+	color: #cf8a05;
+}
+
+@media (max-width: 768px) { 
+    #web-dev-portfolio container {
+        flex: 0 0 100%;
+    }
 }
 
 @media all and (min-width: 602px) and (max-width: 800px) {
