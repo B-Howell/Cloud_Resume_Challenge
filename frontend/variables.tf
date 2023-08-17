@@ -71,19 +71,19 @@ variable "objects" {
       path         = "resume_s3_bucket/web-dev.html"
       content_type = "text/html"
     }
-    "movie-rankings.html" = {
+    "web-dev-portfolio/movie-rankings.html" = {
       path         = "resume_s3_bucket/web-dev-portfolio/movie-rankings.html"
       content_type = "text/html"
     }
-    "movie-rankings.PNG" = {
+    "web-dev-portfolio/images/movie-rankings.PNG" = {
       path         = "resume_s3_bucket/web-dev-portfolio/images/movie-rankings.PNG"
       content_type = "image/png"
     }
-    "birthday-invite.html" = {
+    "web-dev-portfolio/birthday-invite.html" = {
       path         = "resume_s3_bucket/web-dev-portfolio/movie-rankings.html"
       content_type = "text/html"
     }
-    "birthday-invite.PNG" = {
+    "web-dev-portfolio/images/birthday-invite.PNG" = {
       path         = "resume_s3_bucket/web-dev-portfolio/images/birthday-invite.PNG"
       content_type = "image/png"
     }
