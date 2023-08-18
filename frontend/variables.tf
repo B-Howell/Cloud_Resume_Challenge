@@ -63,7 +63,7 @@ variable "objects" {
       path         = "resume_s3_bucket/hangman.html"
       content_type = "text/html"
     }
-    "hangman.css" = {
+    "games.css" = {
       path         = "resume_s3_bucket/games.css"
       content_type = "text/css"
     }
