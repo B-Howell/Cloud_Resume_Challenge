@@ -247,16 +247,17 @@ section:last-child {
 }
 
 .web-dev-projects {
-	display: flex;
+	display:inline;
 }
 
 #web-dev-portfolio container {
     box-sizing: border-box;
     padding: 0.5rem;
+	max-width: 50&;
 }
 
 #web-dev-portfolio container img {
-    width: 80%;
+    width: 45%;
     height: auto;
     margin: 0;
     padding: 0;

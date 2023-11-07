@@ -1,0 +1,100 @@
+html {
+    font-size: 45px;
+}
+
+body {
+    margin: 0;
+    background-color: #F6F4EB;
+    width: fit-content;
+    overflow-x: hidden;
+}
+
+div {
+    padding: 10px;
+}
+
+#header {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+#header img {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+}
+
+#header #titles {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1;
+    color: aliceblue;
+}
+
+#about-me {
+    background-color: #91C8E4;
+}
+
+#resume {
+    background-color: #F6F4EB;
+}
+
+#certifications {
+    background-color: #91C8E4;
+}
+
+#hangman{
+    background-color: #F6F4EB;
+}
+
+#web-dev {
+    background-color: #91C8E4;
+    padding: 1%;
+}
+
+#wd-projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#wd-projects a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.wd-project {
+    background-color: #F6F4EB;
+    border: 5px solid #1e317d;
+    padding: 10px;
+    margin: 10px;
+    max-width: 600px;
+    flex: 1;
+}
+
+@media (max-width: 600px) {
+  .wd-project {
+    flex: 0 0 100%;
+  }
+}
+
+@media (min-width: 601px) {
+  .wd-project {
+    flex: 0 0 calc(33.333% - 20px);
+  }
+}
+
+.wd-project h3 {
+    text-align: center;
+}
+
+a > .wd-project h3 {
+    text-decoration: none;  /* Remove underline */
+    color: inherit;  /* Inherit text color from parent */
+}
