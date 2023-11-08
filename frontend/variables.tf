@@ -59,6 +59,10 @@ variable "objects" {
       path         = "resume_s3_bucket/style.css"
       content_type = "text/css"
     }
+    "Brett_Howell_CV.pdf" = {
+      path         = "resume_s3_bucket/Brett_Howell_CV.pdf"
+      content_type = "application/pdf"
+    }
     "hangman.html" = {
       path         = "resume_s3_bucket/hangman.html"
       content_type = "text/html"
